@@ -11,7 +11,13 @@ This Docker Compose file sets up Apache Airflow along with its dependencies like
 2. Navigate to the directory containing docker-compose.yaml.
 3. Run the following command: 
 
-`docker-compose up`
+`mkdir -p ./dags ./logs ./plugins ./config`
+
+`echo -e "AIRFLOW_UID=$(id -u)" > .env`
+
+`docker compose up airflow-init`
+
+`docker-compose up -d`
 
 5. Access Airflow UI at http://localhost:8080.
 
