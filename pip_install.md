@@ -11,11 +11,14 @@ python3 -m venv venv
 
 source venv/bin/activate
 
+# Cài đặt setuptools và wheel
+pip install --upgrade pip setuptools wheel
+
 # Đặt biến môi trường (tuỳ chọn)
 export AIRFLOW_HOME=~/my_airflow
 
 # Cài đặt Airflow với PostgreSQL
-pip install apache-airflow[postgres]==2.5.1
+pip install apache-airflow[postgres]==2.9.1
 
 # Khởi tạo cơ sở dữ liệu
 airflow db init
@@ -27,3 +30,8 @@ airflow users create --username admin --firstname Admin --lastname User --role A
 airflow webserver --port 8080
 
 airflow scheduler
+
+# Tạo DAG
+mkdir -p $AIRFLOW_HOME/dags
+
+touch $AIRFLOW_HOME/dags/example_dag.py
